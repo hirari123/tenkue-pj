@@ -1,0 +1,36 @@
+# docker-compose.ymlのバージョン
+version: '3'
+# docker volumeの設定
+volumes:
+  mysql-volume:
+
+# services以下に各コンテナの設定を書く
+services:
+  #Webサーバーのコンテナ
+  web:
+    image: nginx:1.15.6
+    ports:
+      - '8000:80'
+    depends_on:
+      - app
+    volumes:
+      - ./docker/web/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/html
+  #アプリケーションのコンテナ
+  app:
+    build: ./docker/php
+    volumes:
+      - .:/var/www/html
+  #データベースのコンテナ
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: tenkue_note_pj
+      MYSQL_USER: tk_ments
+      MYSQL_PASSWORD: kaihatu0801
+      MYSQL_ROOT_PASSWORD: root
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql-volume:/var/lib/mysql
