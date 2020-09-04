@@ -14,13 +14,13 @@
 
     @guest
     <li class="nav-item">
-      <a href="" class="nav-link">ログイン</a>
+      <a href="{{route('login')}}" class="nav-link">ログイン</a>
     </li>
     @endguest
 
     @auth
     <li class="nav-item">
-      <a href="" class="nav-link"><i class="fas fa-pen mr-1"></i>投稿する</a>
+      <a href="" class="nav-link"><i class="fas fa-pen mr-1"></i>ノート作成</a>
     </li>
     @endauth
 
