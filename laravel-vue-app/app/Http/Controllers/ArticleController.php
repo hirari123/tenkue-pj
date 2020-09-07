@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
 
+    // 作成したArticleポリシーの有効化
+    public function __construct()
+    {
+        $this->authorizeResource(Article::class, 'article');
+    }
+
     // note作成
     public function create()
     {
