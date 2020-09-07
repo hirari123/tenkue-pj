@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// 記事一覧の取得のコード。記入待ち
-//use App\Article;
+use App\Article;
 
 use App\Http\Requests\ArticleRequest;
 
@@ -30,7 +29,7 @@ class ArticleController extends Controller
     // noteの編集
     public function edit(Article $article)
     {
-        return view('articles.edit', ['article' => $article])
+        return view('articles.edit', ['article' => $article]);
     }
 
     // noteの編集の反映
