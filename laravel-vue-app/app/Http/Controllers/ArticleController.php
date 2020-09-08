@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// 記事一覧の取得のコード。記入待ち
-//use App\Article;
+use App\Article;
 
 use App\Http\Requests\ArticleRequest;
 
@@ -11,6 +10,12 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+
+    // 作成したArticleポリシーの有効化
+    public function __construct()
+    {
+        $this->authorizeResource(Article::class, 'article');
+    }
 
     // note作成
     public function create()
@@ -30,7 +35,7 @@ class ArticleController extends Controller
     // noteの編集
     public function edit(Article $article)
     {
-        return view('articles.edit', ['article' => $article])
+        return view('articles.edit', ['article' => $article]);
     }
 
     // noteの編集の反映
