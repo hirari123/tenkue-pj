@@ -17,6 +17,12 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
+    public function index()
+    {
+        $articles = Article::all()->sortByDesc('created_at');
+        return view('articles.index', ['articles' => $articles]);
+    }
+
     // note作成
     public function create()
     {

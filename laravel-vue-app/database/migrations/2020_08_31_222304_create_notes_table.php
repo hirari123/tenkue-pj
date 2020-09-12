@@ -13,13 +13,13 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
-            $table->bigIncrements('note_id');
+        Schema::create('articles', function (Blueprint $table) {
+            $table->bigIncrements('article_id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->string('note_title', 100);
             $table->text('content');
-            $table->integer('note_type')->length(11);
+            $table->integer('article_type')->length(11);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('aritcles');
     }
 }
