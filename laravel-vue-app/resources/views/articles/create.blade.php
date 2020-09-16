@@ -1,30 +1,35 @@
-{{-- note作成画面 html,cssは後ほど差し替え --}}
+{{-- note作成画面 --}}
 
 @extends('app')
 
 @section('title', 'note作成')
 
-@include('nav')
-
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="card mt-3">
-          <div class="card-body pt-0">
-            @include('error_card_list')
-            <div class="card-text">
-              <form method="POST" action="{{ route('articles.store') }}">
 
-                {{-- 新規作成、編集でもform部分は共有使用する --}}
-                @include('articles.form')
+<div class="top">
 
-                <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    @include('nav')
+
+    {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
+    {{-- @include('error_card_list') --}}
+
+    <form method="POST" action="{{ route('articles.store') }}">
+
+    {{-- 新規作成、編集でもform部分は共有使用する --}}
+    @include('articles.form')
+
+    {{-- noteの新規登録 --}}
+    <p>
+        <input type="submit" class="btn new" name="post-note" value="新規作成"/>
+    </p>
+
+    {{-- 画像登録 --}}
+    <p>
+        <input type="submit" class="btn image" name="post-img" value="画像登録"/>
+    </p>
+
+
+    </form>
+
+</div>
 @endsection

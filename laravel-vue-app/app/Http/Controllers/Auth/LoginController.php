@@ -26,10 +26,11 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
+     * ログイン後のリダイレクト先をnote一覧画面に変更
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/list';
 
     /**
      * Create a new controller instance.
@@ -39,6 +40,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // ログアウト時のリダイレクト先をnote一覧ページに変更
+    protected function loggedOut(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return $this->loggedOut($request) ?: redirect('/list');
     }
 
     public function redirectToProvider(string $provider)
@@ -55,8 +68,8 @@ class LoginController extends Controller
         $user = User::where('email', $providerUser->getEmail())->first();
 
         // ログイン処理
-        if($user) {
-            $this->guard()->login($user,true);
+        if ($user) {
+            $this->guard()->login($user, true);
             return $this->sendLoginResponse($request);
         }
 

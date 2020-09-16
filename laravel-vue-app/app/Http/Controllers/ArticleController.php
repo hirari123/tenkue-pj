@@ -17,6 +17,7 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
+    // note一覧の表示
     public function index()
     {
         $articles = Article::all()->sortByDesc('created_at');
@@ -29,7 +30,7 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    // noteの登録
+    // noteのデータベースへの登録
     public function store(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
@@ -62,5 +63,11 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         return view('aritcle.show', ['article' => $article]);
+    }
+
+    // トップページの表示
+    public function top()
+    {
+        return view('articles.toppage');
     }
 }

@@ -2,27 +2,45 @@
 
 @extends('app')
 
-@section('title', 'note更新')
-
-@include('nav')
+@section('title', 'note編集')
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="card mt-3">
-          <div class="card-body pt-0">
-            @include('error_card_list')
-            <div class="card-text">
-              <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
-                @method('PATCH')
-                @include('articles.form')
-                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<div class="top">
+
+    @include('nav')
+
+    {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
+    {{-- @include('error_card_list') --}}
+
+        <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
+        @method('PATCH')
+        @include('articles.form')
+        {{-- noteの更新 --}}
+            <p>
+              <input type="submit" class="btn new" name="post-note" value="更新"/>
+            </p>
+
+            {{-- 画像登録 --}}
+            <p>
+              <input type="submit" class="btn image" name="post-img" value="画像登録"/>
+            </p>
+        </form>
+
+        {{-- 削除ボタン --}}
+        <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+              @csrf
+              @method('DELETE')
+                <button type="submit" class="btn edit">削除</button>
+        </form>
+
+        {{-- 一覧ページへの遷移ボタン --}}
+        <p>
+            <a href="{{route('list')}}">
+                <button type="button" class="btn">一覧</button>
+            </a>
+        </p>
+
+</div>
+
 @endsection

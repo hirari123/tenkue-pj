@@ -12,10 +12,10 @@ body {
 .top__container {
     width: 100%;
     height: 52px;
-    background-color: #1893ED;
+    background-color: #1893ed;
     display: flex;
     justify-items: center;
-    justify-content:center;
+    justify-content: center;
 }
 
 .top__container h1 {
@@ -51,42 +51,42 @@ body {
 
 .top__btn-login p {
     margin: 30px;
-} 
+}
 
 .btn {
     width: 160px;
-    height: 40px;  
-    background-color: #fffF;
-    border-color: #BCE0FD;
+    height: 40px;
+    background-color: #ffff;
+    border-color: #bce0fd;
     border-radius: 4px;
-    color:#2699FB;
+    color: #2699fb;
     font-size: 10px;
     font-weight: bold;
     text-justify: center;
 }
 .btn.edit {
     width: 40px;
-    height: 30px;  
+    height: 30px;
 }
 
-.btn:hover{
-    background-color: #2699FB;
+.btn:hover {
+    background-color: #2699fb;
     color: #fff;
     cursor: pointer;
 }
 .chart {
     width: 375px;
-    height:550px;
+    height: 550px;
     margin: 20px auto 0 auto;
 }
-ul.chart-list{
+ul.chart-list {
     text-decoration: none;
     padding: 0;
 }
-li.chart-list{
+li.chart-list {
     display: flex;
     justify-content: space-between;
 }
-.chart span{
+.chart span {
     display: inline-block;
 }
