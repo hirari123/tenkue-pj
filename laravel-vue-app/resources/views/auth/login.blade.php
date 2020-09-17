@@ -26,7 +26,8 @@
 
           <p class="btn"><input type="submit"  class="btn login" name="regist" value="ログイン"></p>
 
-          <p class="btn pwforgrt"><a href="{{ route('password.request') }}" class="pwforgrt">パスワードをお忘れの場合</a></p>
+          <!-- .btnのホバーを削除しました -->
+          <p class="pwforgrt"><a href="{{ route('password.request') }}" class="pwforgrt">パスワードをお忘れの場合</a></p>
 
 
         </form>
