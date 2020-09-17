@@ -6,54 +6,31 @@
 
 @section('content')
   <div class="container">
-    <div class="row">
-      <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-        <h1 class="text-center"><a href="/" class="text-dark">everynote</a></h1>
-        <div class="card mt-3">
-          <div class="card-body text-center">
-            <h2 class="h3 card-title text-center mt-2">ログイン</h2>
+    <div class="inner">
+      <header class="header">
+        <h1 class="apptitle">everynote</h1>
+      </header>
 
-            <!-- 「Googleでログイン」ボタン -->
-            <a href="{{route('login.{provider}', ['provider' => 'google'])}}" class="btn btn-block btn-danger">
-              <i class="fab fa-google mr-1"></i>Googleでログイン
-            </a>
+      @include('error_card_list')
 
-            @include('error_card_list')
+      <div class="form_wrapper">
+        <form action="{{route('login')}}" method="POST">
 
-            <div class="card-text">
-              <form action="{{route('login')}}" method="POST">
-                @csrf
+          @csrf
 
-                <div class="md-form">
-                  <label for="email">メールアドレス</label>
-                  <input type="text" class="form-control" id="email" name="email" required value="{{old('email')}}">
-                </div>
+          <p class="inputlabel">メールアドレス</p>
+          <p class="input"><input type="email" class="user" id="email" name="email" placeholder="hoge@mail.com" required value="{{old('email')}}"></p>
 
-                <div class="md-form">
-                  <label for="password">パスワード</label>
-                  <input type="password" class="form-control" id="password" name="password" required>
-                </div>
+          <p class="inputlabel pw">パスワード</p>
+          <p class="input"><input type="password" class="user" id=“password” name="password" placeholder="******" required value="{{old('email')}}"></p>
 
-                <input type="hidden" name="remember" id="remember" value="on">
+          <p class="btn"><input type="submit"  class="btn login" name="regist" value="ログイン"></p>
+
+          <p class="btn pwforgrt"><a href="{{ route('password.request') }}" class="pwforgrt">パスワードをお忘れの場合</a></p>
 
 
-                <div class="text-left">
-                  <a href="{{ route('password.request') }}" class="card-text">パスワードを忘れた方</a>
-                </div>
-
-
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ログイン</button>
-
-              </form>
-
-              <div class="mt-0">
-                <a href="{{route('register')}}" class="card-text">ユーザー登録はこちら</a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </form>
+      </div><!--form_wrapper-->
+    </div><!--inner-->
+  </div><!--container-->
 @endsection
