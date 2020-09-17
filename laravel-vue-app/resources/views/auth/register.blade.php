@@ -5,54 +5,29 @@
 @section('title', 'ユーザー登録')
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-        <h1 class="text-center"><a class="text-dark" href="/">everynote</a></h1>
-        <div class="card mt-3">
-          <div class="card-body text-center">
-            <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
+<div class="container">
+  <div class="inner">
+    <header class="header">
+      <h1 class="apptitle">everynote</h1>
+    </header>
 
-            <!-- 「Googleで登録」ボタンを設置 -->
-            <a href="{{route('login.{provider}', ['provider' => 'google'])}}" class="btn btn-block btn-danger">
-              <i class="fab fa-google mr-1">Googleで登録</i>
-            </a>
+    @include('error_card_list')
 
-            @include('error_card_list')
+    <div class="form_wrapper">
+      <form action="{{route('register')}}" method="POST">
 
-            <!-- 入力フォーム -->
-            <div class="card-text">
-              <form action="{{route('register')}}" method="POST">
-                @csrf
-                <div class="md-form">
-                  <label for="name">ユーザー名</label>
-                  <input type="text" class="form-control" id="name" name="name" required value="{{old('name')}}">
-                  <small>英数字3〜16文字(登録後の変更はできません)</small>
-                </div>
-                <div class="md-form">
-                  <label for="email">メールアドレス</label>
-                  <input type="text" class="form-control" id="email" name="email" required value="{{old('email')}}">
-                </div>
-                <div class="md-form">
-                  <label for="password">パスワード</label>
-                  <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="md-form">
-                  <label for="password_confirmation">パスワード(確認)</label>
-                  <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                </div>
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
-              </form>
-              <!-- 入力フォーム ここまで -->
+        @csrf
 
-              <div class="mt-0">
-                <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <p class="inputlabel">名前</p>
+        <p class="input"><input type="text" id="name" class="user" name="name" placeholder="太郎" required value="{{old('name')}}"></p>
+        <p class="inputlabel">メールアドレス</p>
+        <p class="input"><input type="email" class="user" id=“email” name="email" placeholder="hoge@mail.com" required value="{{old('email')}}"></p>
+        <p class="inputlabel">パスワード</p>
+        <p class="input"><input type="password" class="user" id=“password” name="password" placeholder="******" required></p>
+        <p class="btn"><input type="submit"  class="btn" name="register" value="新規会員登録"></p>
+        <p class="btn"><input type="button" class="btn" name="google" value="googleアカウントで登録"></p>
+      </form>
+    </div><!--form_wrapper-->
+  </div><!--inner-->
+</div><!--container-->
 @endsection
