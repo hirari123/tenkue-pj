@@ -1,41 +1,33 @@
+<!-- パスワード再設定メール要求画面 -->
+
 @extends('app')
 
 @section('title', 'パスワード再設定')
 
 @section('content')
   <div class="container">
-    <div class="row">
-      <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-        <h1 class="text-center"><a class="text-dark" href="/">memo</a></h1>
-        <div class="card mt-3">
-          <div class="card-body text-center">
-            <h2 class="h3 card-title text-center mt-2">パスワード再設定</h2>
+    <div class="inner">
+      <header class="header">
+        <h1 class="apptitle">everynote</h1>
+      </header>
 
-            @include('error_card_list')
+      @include('error_card_list')
 
-            @if (session('status'))
-              <div class="card-text alert alert-success">
-                {{ session('status') }}
-              </div>
-            @endif
+      <div class="form_wrapper">
+        <form method="POST" action="{{ route('password.email') }}">
 
-            <div class="card-text">
-              <form method="POST" action="{{ route('password.email') }}">
-                @csrf
+          @csrf
 
-                <div class="md-form">
-                  <label for="email">メールアドレス</label>
-                  <input class="form-control" type="text" id="email" name="email" required>
-                </div>
-
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">メール送信</button>
-
-              </form>
-
-            </div>
+          <p class="inputlabel">メールアドレス</p>
+          <p class="input"><input type="email" class="user" id=“email” name="email" placeholder="hoge@mail.com" required></p>
+          <div class="caution">
+            メール再設定の注意書き
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+          <p class="btn"><input type="submit"  class="btn" name="mailsent" value="メール送信"></p>
+
+        </form>
+      </div><!--form_wrapper-->
+    </div><!--inner-->
+  </div><!--container--> 
 @endsection
