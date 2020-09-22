@@ -18,6 +18,7 @@ class ArticleRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     * 画像ファイルがファイル形式であること、拡張子の限定を行う
      *
      * @return array
      */
@@ -26,6 +27,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => ['required', 'max:100'],
             'content' => ['required', 'max:1000'],
+            'file_name' => ['file', 'mimes:jpg,jpeg,png,gif'],
         ];
     }
 
@@ -34,6 +36,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'タイトル',
             'content' => '本文',
+            'file_name' => '画像',
         ];
     }
 }

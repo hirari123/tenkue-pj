@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Image;
 
 use App\Http\Requests\ArticleRequest;
 
@@ -30,12 +31,53 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    // noteのデータベースへの登録
-    public function store(ArticleRequest $request, Article $article)
+    // $requestに格納されているデータを$article,$imageに割り当てて保存していく
+    // noteのデータベースへの登録 + 添付された画像の保存 保存完了後は一覧ページへ遷移
+
+    public function store(ArticleRequest $request, Article $article, Image $image)
     {
-        $article->fill($request->all());
+        // タイトルとコンテンツを取得
+        $article->note_title = $request->note_title;
+        $article->content = $request->content;
+
+        // 投稿画像の拡張子を取得する
+        $extension = $request->image->extension();
+
+        // 画像のアップロード 画像名は 'アップロード時間' 'ユーザーid''拡張子名' を合わせたものにする
+        $time = date("Ymdhis");
+        $image->file_name = $time . '_' . $request->user()->id . $extension;
+
+
+        // S3に投稿した画像を保存 第4引数の'public'はファイルを公開状態で保存するため
+        // putFileAs($path, $file, $name, $options = [])
+        Storage::cloud()
+            ->putFileAs('', $request->image, $image->file_name, 'public');
+
+        // データベースエラー時にファイル削除を行うためトランザクションを利用する
+        DB::beginTransaction();
+
+        try {
+            // ログインユーザーの記事の中からimageを保存
+            Auth::user()->articles()->images()->save($image);
+            // 画像の保存を確定
+            DB::commit();
+        } catch (\Exception $exception) {
+            // エラーが発生した場合はトランザクションを取り消し
+            DB::rollBack();
+            // そしてアップロードしたファイルを削除する
+            Storage::cloud()->delete($image->file_name);
+            throw $exception;
+        }
+
+        // 画像保存はここまで
+
+        // 登録ユーザーからidを取得
         $article->user_id = $request->user()->id;
+
+        // 必要データを格納できたのでarticleを保存する
         $article->save();
+
+        // 一覧ページへリダイレクト
         return redirect()->route('articles.index');
     }
 

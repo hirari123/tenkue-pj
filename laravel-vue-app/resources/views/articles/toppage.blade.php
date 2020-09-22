@@ -29,7 +29,7 @@
 
             {{-- 画像登録 --}}
             <p>
-              <input type="submit" class="btn image" name="post-img" value="画像登録"/>
+              <input type="file" class="btn image" name="file_name" value="画像登録"/>
             </p>
 
           </div>
