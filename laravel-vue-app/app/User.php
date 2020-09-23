@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $primaryKey = 'user_id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,5 +44,13 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordResetNotification($token, new BareMail()));
+    }
+
+    /**
+     * このarticleを所有するuserを取得
+     */
+    public function article()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/list';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'min:3', 'max:16', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
     }
 
@@ -92,7 +92,7 @@ class RegisterController extends Controller
     {
         // バリデーションの実施
         $request->vaidate([
-            'name' =>['required', 'string', 'min:3', 'max:16', 'unique:users'],
+            'name' => ['required', 'string', 'min:3', 'max:16', 'unique:users'],
             'token' => ['required', 'string'],
         ]);
 
@@ -112,6 +112,5 @@ class RegisterController extends Controller
         $this->guard()->login($user, true);
 
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
-
     }
 }
