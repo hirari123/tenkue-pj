@@ -42,7 +42,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // ログアウト時のリダイレクト先をnote一覧ページに変更
+    // ログアウト時のリダイレクト先をnoteトップページに変更
     protected function loggedOut(Request $request)
     {
         $this->guard()->logout();
@@ -51,7 +51,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return $this->loggedOut($request) ?: redirect('/list');
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     public function redirectToProvider(string $provider)

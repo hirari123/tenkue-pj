@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
 
+    protected $primaryKey = 'article_id';
+
     // 作成されたarticleのUserを取得
     public function user(): BelongsTo
     {
