@@ -36,7 +36,7 @@
 
         {{-- 一覧ページへの遷移ボタン --}}
         <p>
-            <a href="{{route('list')}}">
+            <a href="{{route('articles.index')}}">
                 <button type="button" class="btn">一覧</button>
             </a>
         </p>

@@ -12,9 +12,10 @@
     @include('nav')
 
     {{-- 作成したノートを最新順に行で表示する --}}
+
     @foreach($articles as $article)
 
-      <div class="chart">
+    <div class="chart">
 
         <div class="chart-list">
 
@@ -49,11 +50,8 @@
           @endif
         </div>
 
-          {{-- noteの内容表示 保留 --}}
-          {{-- <div class="card-text">
-            {!! nl2br(e($article->content)) !!}
-          </div> --}}
      </div>
+
     @endforeach
 
      {{-- 作成ボタンとログアウトボタン --}}
