@@ -10,6 +10,17 @@
 
     @include('nav')
 
+    {{-- エラー確認のための表示機能 解決したら破棄 --}}
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
     {{-- @include('error_card_list') --}}
 
@@ -20,7 +31,7 @@
 
     {{-- noteの新規登録 --}}
     <p>
-        <input type="submit" class="btn new" name="post-note" value="新規作成"/>
+        <input type="submit" class="btn new" value="新規作成"/>
     </p>
 
     {{-- 画像登録 --}}

@@ -45,19 +45,7 @@ class ArticleController extends Controller
         $article->content = $request->content;
 
         // 登録ユーザーからidを取得
-        $article->user_id = $request->user()->id;
-
-        // 投稿画像の拡張子を取得する
-        $extension = $request->file_name->extension();
-
-        // 画像のアップロード  画像名は 'アップロード時間' 'ユーザーid''拡張子名' を合わせたものにする
-        $time = date("Ymdhis");
-        $image->image_title = $time . '_' . $request->user()->id . $extension;
-
-        // image、articleのarticle_idを結びつける ariticle()の記述は必要？ $imageに画像データの格納
-        $image->article_id = $article->article()->article_id;
-        $image->file_name = $request->file_name;
-
+        $article->user_id = $request->user()->user_id;
 
         // S3に投稿した画像を保存 第4引数の'public'はファイルを公開状態で保存するためのオプション
         // putFileAs($path, $file, $name, $options = [])
@@ -81,26 +69,41 @@ class ArticleController extends Controller
         //     throw $exception;
         // }
 
-        // ローカルストレージへ画像を保存する
 
-        Storage::putFileAs('', '$image', '$image->image_title');
+        // $requestに画像データが添付されているのかを判定する
 
-        // データベースエラー時にファイル削除を行うためトランザクションを利用する
-        DB::beginTransaction();
+        if ($request->filled('file_name')) {
 
-        try {
-            // 画像をupしたらDBに画像を保存する。エラーが発生した場合はアップした画像も削除する
-            Auth::user()->articles()->images()->save($image);
-            // 画像の保存を確定
-            DB::commit();
-        } catch (\Exception $exception) {
-            // エラーが発生した場合はトランザクションを取り消し
-            DB::rollBack();
-            // そしてアップロードしたファイルを削除する
-            Storage::delete($image->file_name);
-            throw $exception;
+            // 投稿画像の拡張子を取得する
+            $extension = $request->file_name->extension();
+
+            // 画像のアップロード  画像名は 'アップロード時間' 'ユーザーid''拡張子名' を合わせたものにする
+            $time = date("Ymdhis");
+            $image->image_title = $time . '_' . $request->user()->id . $extension;
+
+            // image、articleのarticle_idを結びつける ariticle()の記述は必要？ $imageに画像データの格納
+            $image->article_id = $article->article()->article_id;
+            $image->file_name = $request->file_name;
+
+            // 画像が添付されていた場合、ローカルストレージへ画像を保存する
+            Storage::putFileAs('', '$image', '$image->image_title');
+
+            // データベースエラー時にファイル削除を行うためトランザクションを利用する
+            DB::beginTransaction();
+
+            try {
+                // 画像をupしたらDBに画像を保存する。エラーが発生した場合はアップした画像も削除する
+                Auth::user()->articles()->images()->save($image);
+                // 画像の保存を確定
+                DB::commit();
+            } catch (\Exception $exception) {
+                // エラーが発生した場合はトランザクションを取り消し
+                DB::rollBack();
+                // そしてアップロードしたファイルを削除する
+                Storage::delete($image->file_name);
+                throw $exception;
+            }
         }
-
         // 画像保存はここまで
 
         // 必要データを格納できたのでarticleを保存する
