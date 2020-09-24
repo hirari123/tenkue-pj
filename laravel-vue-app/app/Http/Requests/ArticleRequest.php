@@ -25,16 +25,16 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:100'],
+            'note_title' => ['required', 'max:100'],
             'content' => ['required', 'max:1000'],
-            'file_name' => ['file', 'mimes:jpg,jpeg,png,gif'],
+            'file_name' => ['image', 'nullable'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'title' => 'タイトル',
+            'note_title' => 'タイトル',
             'content' => '本文',
             'file_name' => '画像',
         ];
