@@ -23,4 +23,11 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
+    // 認証成功後のリダイレクト先を一覧ページのURIに指定
+
+    protected function redirectTo()
+    {
+        return '/list';
+    }
 }

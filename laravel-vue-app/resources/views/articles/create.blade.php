@@ -39,6 +39,13 @@
         <input type="file" class="btn image" name="file_name" value="画像登録" multiple/>
     </p>
 
+    {{-- 一覧ページへの遷移ボタン --}}
+        <p>
+            <a href="{{route('articles.index')}}">
+                <button type="button" class="btn">一覧</button>
+            </a>
+        </p>
+
 
     </form>
 
