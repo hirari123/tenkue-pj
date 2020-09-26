@@ -27,7 +27,7 @@ class ArticleRequest extends FormRequest
         return [
             'note_title' => ['required', 'max:100'],
             'content' => ['required', 'max:1000'],
-            'file_name' => ['image', 'nullable'],
+            'file_name' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif'],
         ];
     }
 

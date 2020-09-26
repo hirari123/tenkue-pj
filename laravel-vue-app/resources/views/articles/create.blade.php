@@ -24,7 +24,7 @@
     {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
     {{-- @include('error_card_list') --}}
 
-    <form method="POST" action="{{ route('articles.store') }}">
+    <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
 
     {{-- 新規作成、編集でもform部分は共有使用する --}}
     @include('articles.form')

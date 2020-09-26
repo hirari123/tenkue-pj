@@ -13,7 +13,7 @@
     {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
     {{-- @include('error_card_list') --}}
 
-        <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
+        <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}" enctype="multipart/form-data">
         @method('PATCH')
         @include('articles.form')
         {{-- noteの更新 --}}

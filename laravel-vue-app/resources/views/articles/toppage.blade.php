@@ -11,7 +11,7 @@
 
     {{-- note入力画面 --}}
 
-    <form method="POST" action="{{ route('articles.store') }}">
+    <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
 
         {{-- form.bladeの読み込み  --}}
         @include('articles.form')
