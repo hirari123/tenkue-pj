@@ -22,4 +22,11 @@ class Article extends Model
     {
         return $this->hasMany('App/Image');
     }
+
+    /**
+     * 複数代入する属性
+     *
+     * @var array
+     */
+    protected $fillable = ['note_title', 'content'];
 }
