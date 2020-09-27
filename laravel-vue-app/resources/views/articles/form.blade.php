@@ -10,8 +10,8 @@
     </p>
 
         {{-- 内容入力 --}}
-        <textarea name="content" required class="form-control" rows="16" placeholder="ノート内容">{{$article->content ?? old('content') }}
-        </textarea>
+        <textarea name="content" required class="form-control" rows="16"
+        placeholder="ノート内容">{{$article->content ?? old('content') }}</textarea>
 
 
 </div>
