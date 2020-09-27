@@ -36,7 +36,7 @@
 
     {{-- 画像登録 --}}
     <p>
-        <input type="file" class="btn image" name="file_name" value="画像登録" multiple/>
+        <input type="file" class="btn image" name="image" value="画像登録" multiple/>
     </p>
 
     {{-- 一覧ページへの遷移ボタン --}}

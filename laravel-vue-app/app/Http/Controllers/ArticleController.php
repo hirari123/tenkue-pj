@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Article;
 use App\Image;
 
@@ -47,67 +48,45 @@ class ArticleController extends Controller
         // 登録ユーザーからidを取得
         $article->user_id = $request->user()->user_id;
 
-        // S3に投稿した画像を保存 第4引数の'public'はファイルを公開状態で保存するためのオプション
-        // putFileAs($path, $file, $name, $options = [])
-        // Storage::cloud()
-        //     ->putFileAs('', $request->image, $image->file_name, 'public');
-
-        // データベースエラー時にファイル削除を行うためトランザクションを利用する
-        // DB::beginTransaction();
-
-        // try {
-        // 画像の保存を確定するかどうかをユーザー認証で判定している
-        // Auth::user()->articles()->images()->save($image);
-        // Auth::user()->article()->images()->save($image);
-        // 画像の保存を確定
-        //     DB::commit();
-        // } catch (\Exception $exception) {
-        //     // エラーが発生した場合はトランザクションを取り消し
-        //     DB::rollBack();
-        //     // そしてアップロードしたファイルを削除する
-        //     Storage::cloud()->delete($image->file_name);
-        //     throw $exception;
-        // }
-
+        // 必要データを格納できたのでarticleを保存する
+        $article->save();
 
         // $requestに画像データが添付されているのかを判定する
 
-        if ($request->filled('file_name')) {
+        if ($request->hasfile('image')) {
 
+            // 画像をアップロードするための準備。
             // 投稿画像の拡張子を取得する
-            $extension = $request->file_name->extension();
+            $extension = $request->image->extension();
 
-            // 画像のアップロード  画像名は 'アップロード時間' 'ユーザーid''拡張子名' を合わせたものにする
+            // 画像名は 'アップロード時間' 'ユーザーid''拡張子名' を合わせたものにする
             $time = date("Ymdhis");
-            $image->image_title = $time . '_' . $request->user()->id . $extension;
+            $image->image_title = $time . '_' . $request->user()->user_id . $extension;
 
-            // image、articleのarticle_idを結びつける ariticle()の記述は必要？ $imageに画像データの格納
-            $image->article_id = $article->article()->article_id;
-            $image->file_name = $request->file_name;
+            // image、articleのarticle_idを結びつける $imageに画像データの格納
+            $image->article_id = $article->article_id;
+            $image->file_name = $request->image;
 
-            // 画像が添付されていた場合、ローカルストレージへ画像を保存する
-            Storage::putFileAs('', '$image', '$image->image_title');
+            // ローカルストレージへ画像を保存する
+            $path = Storage::putFileAs('', $request->file('image'), $image->image_title);
 
             // データベースエラー時にファイル削除を行うためトランザクションを利用する
             DB::beginTransaction();
 
             try {
-                // 画像をupしたらDBに画像を保存する。エラーが発生した場合はアップした画像も削除する
-                Auth::user()->articles()->images()->save($image);
+                // 画像がストレージにupされたらDBにも画像を登録する。エラーが発生した場合はupした画像も削除する
+                $image->save();
                 // 画像の保存を確定
                 DB::commit();
             } catch (\Exception $exception) {
                 // エラーが発生した場合はトランザクションを取り消し
                 DB::rollBack();
                 // そしてアップロードしたファイルを削除する
-                Storage::delete($image->file_name);
+                Storage::delete($image->image_title);
                 throw $exception;
             }
         }
         // 画像保存はここまで
-
-        // 必要データを格納できたのでarticleを保存する
-        $article->save();
 
         // 一覧ページへリダイレクト
         return redirect()->route('articles.index');
@@ -135,7 +114,7 @@ class ArticleController extends Controller
             $time = date("Ymdhis");
             $image->image_title = $time . '_' . $request->user()->id . $extension;
 
-            // image、articleのarticle_idを結びつける ariticle()の記述は必要？ $imageに画像データの格納
+            // image、articleのarticle_idを結びつける article()の記述は必要？ $imageに画像データの格納
             $image->article_id = $article->article()->article_id;
             $image->file_name = $request->file_name;
 

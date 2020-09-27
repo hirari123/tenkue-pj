@@ -24,7 +24,7 @@ class Article extends Model
     }
 
     /**
-     * 複数代入する属性
+     * ノート更新時に受け取る値を限定する
      *
      * @var array
      */
