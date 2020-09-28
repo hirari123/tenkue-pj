@@ -26,8 +26,8 @@
 
     <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
 
-    {{-- 新規作成、編集でもform部分は共有使用する --}}
-    @include('articles.form')
+    {{-- 新規作成専用のformを使用する --}}
+    @include('articles.form-new')
 
     {{-- noteの新規登録 --}}
     <p>

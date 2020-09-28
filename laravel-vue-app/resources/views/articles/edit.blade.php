@@ -16,6 +16,7 @@
         <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}" enctype="multipart/form-data">
         @method('PATCH')
         @include('articles.form')
+
         {{-- noteの更新 --}}
             <p>
               <input type="submit" class="btn new" name="post-note" value="更新"/>
