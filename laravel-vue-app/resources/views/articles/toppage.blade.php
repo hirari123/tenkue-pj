@@ -14,7 +14,7 @@
     <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
 
         {{-- form.bladeの読み込み  --}}
-        @include('articles.form')
+        @include('articles.form-new')
 
         {{-- ログイン時のみデータベースに登録する処理を行う --}}
         @auth
