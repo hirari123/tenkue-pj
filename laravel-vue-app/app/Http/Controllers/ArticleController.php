@@ -99,7 +99,7 @@ class ArticleController extends Controller
     // noteの編集画面の表示
     public function edit(Article $article)
     {
-        $images = Image::where('article_id', $article)->latest()->get();
+        $images = Image::where('article_id', $article->article_id)->latest()->get();
         return view('articles.edit', ['article' => $article], ['images' => $images]);
     }
 
