@@ -71,8 +71,8 @@ class ArticleController extends Controller
             $image->article_id = $article->article_id;
             $image->file_name = $request->image;
 
-            // ローカルストレージへ画像を保存する
-            $path = Storage::putFileAs('', $request->file('image'), $image->image_title);
+            // パブリックストレージへ画像を保存する
+            $path = Storage::putFileAs('public', $request->file('image'), $image->image_title);
 
             // データベースエラー時にファイル削除を行うためトランザクションを利用する
             DB::beginTransaction();
@@ -127,8 +127,8 @@ class ArticleController extends Controller
             $image->article_id = $article->article_id;
             $image->file_name = $request->image;
 
-            // ローカルストレージへ画像を保存する
-            $path = Storage::putFileAs('', $request->file('image'), $image->image_title);
+            // パブリックストレージへ画像を保存する
+            $path = Storage::putFileAs('public', $request->file('image'), $image->image_title);
 
             // データベースエラー時にファイル削除を行うためトランザクションを利用する
             DB::beginTransaction();
