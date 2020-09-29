@@ -152,9 +152,12 @@ class ArticleController extends Controller
     }
 
     // noteの削除
-    // noteを削除したら同時に添付していた画像も削除されるようにカスケードの関係にする必要あり
+    // noteを削除したら同時に添付していた画像も削除されるように
     public function destroy(Article $article)
     {
+        // note削除と同時に添付されている画像もpublicストレージから削除する
+        $image = Image::where('article_id', $article->article_id)->get();
+        // Storage::delete($image->image_title);
         $article->delete();
         return redirect()->route('articles.index');
     }
