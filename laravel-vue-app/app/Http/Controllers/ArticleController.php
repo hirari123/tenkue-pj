@@ -156,8 +156,15 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         // note削除と同時に添付されている画像もpublicストレージから削除する
-        $image = Image::where('article_id', $article->article_id)->get();
-        // Storage::delete($image->image_title);
+        // 複数削除に対応するために配列で画像名を取得する
+        $delete_images = Image::where('article_id', $article->article_id)->pluck('image_title');
+
+        foreach ($delete_images as $delete_image) {
+            // 削除するパスとファイルの指定
+            $delete_path = 'public/' . $delete_image;
+            Storage::delete($delete_path);
+        }
+
         $article->delete();
         return redirect()->route('articles.index');
     }
