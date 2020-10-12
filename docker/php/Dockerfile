@@ -21,5 +21,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 #MySQLを使えるようにする
 RUN docker-php-ext-install pdo_mysql pdo_pgsql
 
+# Dockerfileと同じディレクトリに置いてあるphp.iniをコンテナのphp.iniにコピーする
+COPY ./php.ini /usr/local/etc/php/php.ini
+
 #コンテナ内に入った時のディレクトリを指定
 WORKDIR /var/www/html/laravel-vue-app
