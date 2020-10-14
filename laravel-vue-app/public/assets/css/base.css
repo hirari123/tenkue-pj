@@ -76,8 +76,16 @@ body {
 }
 .chart {
     width: 375px;
-    height: 550px;
     margin: 20px auto 0 auto;
+}
+.chart-list {
+        display: flex; 
+        justify-content: space-between;
+        font-size: 16px;
+}
+.btn-area {
+        display: flex; 
+        justify-content: space-between;
 }
 ul.chart-list {
     text-decoration: none;
@@ -89,4 +97,5 @@ li.chart-list {
 }
 .chart span {
     display: inline-block;
+    text-align:left;
 }

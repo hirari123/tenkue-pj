@@ -31,8 +31,7 @@
           {{-- noteの作成ユーザーのみに編集、削除ボタンを表示する？ --}}
           @if( Auth::id() === $article->user_id )
 
-          <span>
-
+          <div class="btn-area">
               {{-- 編集ボタン --}}
               <a href="{{ route("articles.edit", ['article' => $article]) }}">
                   <button type="button" class="btn edit" href>編集</button>
@@ -45,7 +44,7 @@
                 <button type="submit" class="btn edit">削除</button>
               </form>
 
-            </span>
+           </div>
 
           @endif
         </div>

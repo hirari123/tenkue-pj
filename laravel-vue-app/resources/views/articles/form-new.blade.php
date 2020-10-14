@@ -13,12 +13,4 @@
         <textarea name="content" required class="form-control" rows="16"
         placeholder="ノート内容">{{$article->content ?? old('content') }}</textarea>
 
-        {{-- 画像表示エリア ノートの新規作成画面では画像を表示しない？ --}}
-        {{-- @foreach ($images as $image)
-
-            <div>
-            <img src="{{ asset('storage/'. $image->image_title)}}" alt="添付したimage" style="width: 10%; height: auto;">
-            </div>
-
-        @endforeach --}}
 </div>
