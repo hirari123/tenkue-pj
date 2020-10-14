@@ -31,7 +31,7 @@ class ArticleController extends Controller
         // ログインしているユーザーの記事のみ表示する
 
         $user_id = Auth::id();
-        $articles = Article::where('user_id', $user_id)->latest()->get();
+        $articles = Article::where('user_id', $user_id)->latest()->simplePaginate(5);
         return view('articles.index', ['articles' => $articles]);
     }
 

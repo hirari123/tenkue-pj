@@ -43,17 +43,6 @@ class LoginController extends Controller
     }
 
     // ログアウト時のリダイレクト先をnoteトップページに変更
-    protected function loggedOut(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return $this->loggedOut($request) ?: redirect('/');
-    }
-
     public function redirectToProvider(string $provider)
     {
         return Socialite::driver($provider)->redirect();
