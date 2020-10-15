@@ -50,31 +50,34 @@
           @endif
         </div>
 
-     </div>
+
+    </div>
 
     @endforeach
+
+    {{ $articles->links() }}
 
      {{-- 作成ボタンとログアウトボタン --}}
      <div class="top__btn">
 
         <div class="top__btn-login">
 
-        {{-- create.bladeへのリンクボタン --}}
-        <p>
-            <a href="{{route('articles.create')}}">
-                <button type="button" class="btn">新規作成</button>
-            </a>
-        </p>
+          {{-- create.bladeへのリンクボタン --}}
+          <p>
+              <a href="{{route('articles.create')}}">
+                  <button type="button" class="btn">新規作成</button>
+              </a>
+          </p>
 
-        {{-- ログアウト処理 --}}
-        <button form="logout-button" type="submit" class="btn">ログアウト</button>
-        <form id="logout-button" method="POST" action="{{ route('logout') }}">
-        @csrf
-        </form>
+          {{-- ログアウト処理 --}}
+          <button form="logout-button" type="submit" class="btn">ログアウト</button>
+          <form id="logout-button" method="POST" action="{{ route('logout') }}">
+          @csrf
+          </form>
 
         </div>
 
-    </div>
+      </div>
 
   </div>
 @endsection
