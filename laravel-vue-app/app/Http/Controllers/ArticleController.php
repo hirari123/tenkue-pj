@@ -175,9 +175,15 @@ class ArticleController extends Controller
         return view('aritcle.show', ['article' => $article]);
     }
 
-    // トップページの表示
+    // トップページの表示 ログイン状態であればlistページに遷移する
     public function top()
     {
-        return view('articles.toppage');
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $articles = Article::where('user_id', $user_id)->latest()->get();
+            return view('articles.index', ['articles' => $articles]);
+        } else {
+            return view('articles.toppage');
+        }
     }
 }
