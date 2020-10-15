@@ -98,3 +98,8 @@ div.caution {
     color: #020202;
     font-size: 16px;
 }
+
+/* ページネーションのリスト消去 */
+.page-item {
+    list-style: none;
+}
