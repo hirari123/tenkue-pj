@@ -27,9 +27,8 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
-//サイトにアクセスした際の表示ページの指定 トップページでもnote作成できるようにresourceの追加
+//サイトにアクセスした際の表示ページの指定
 Route::get('/', 'ArticleController@top')->name('articles.toppage');
-Route::resource('/', 'ArticleController')->except(['destroy', 'update', 'edit', 'show', 'index']);
 
 // 一覧ページ表示のルーティング
 Route::get('/list', 'ArticleController@index')->name('articles.index');
