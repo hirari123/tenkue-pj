@@ -7,7 +7,6 @@ body {
 .container {
     width: 100%;
     /* text-align: center; */
-
     /* width: 375px;
   height:812px; */
     margin: 0 auto;
@@ -57,7 +56,7 @@ input::placeholder {
     color: #2699fb;
 }
 p.btn {
-    text-align: center;
+    margin: 30px auto;
 }
 
 /* ログイン画面 ボタン */
@@ -82,6 +81,7 @@ input.btn {
 /* ログイン画面 パスワードをお忘れの方へ */
 p.pwforgrt {
     margin-top: 40px;
+    text-align: center;
 }
 a.pwforgrt {
     font-size: 13px;
