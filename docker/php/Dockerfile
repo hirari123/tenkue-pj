@@ -22,4 +22,5 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 RUN docker-php-ext-install pdo_mysql pdo_pgsql
 
 #コンテナ内に入った時のディレクトリを指定
-WORKDIR /var/www/html/laravel-vue-app
+# WORKDIR /var/www/html/laravel-vue-app
+WORKDIR /var/www/html

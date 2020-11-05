@@ -1,8 +1,5 @@
 # docker-compose.ymlのバージョン
 version: "3"
-# docker volumeの設定
-volumes:
-  mysql-volume:
 
 # services以下に各コンテナの設定を書く
 services:
@@ -32,8 +29,13 @@ services:
       MYSQL_PASSWORD: kaihatu0801
       MYSQL_ROOT_PASSWORD: root
       TZ: "Asia/Tokyo"
+    # volumes:
+    #   - mysql-volume:/var/lib/mysql
     volumes:
-      - mysql-volume:/var/lib/mysql
+      # - docker-volume:/var/lib/mysql
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
 
   # メール送信テスト用のコンテナ
   mailhog:
