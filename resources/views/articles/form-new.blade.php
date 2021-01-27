@@ -1,7 +1,6 @@
 {{-- note記入フォーム。新規作成、編集の両方で使用する --}}
 
 @csrf
-@csrf
 <div class="md-form">
     {{-- タイトル入力 --}}
   <label>タイトル</label>
