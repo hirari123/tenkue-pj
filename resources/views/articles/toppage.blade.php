@@ -2,12 +2,18 @@
 
 @section('title', 'トップページ')
 
+{{-- ナビバー --}}
+@include('nav')
+
 @section('content')
 
-  <div class="top">
-
-    {{-- ナビバー --}}
-    @include('nav')
+    <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mt-3">
+          <div class="card-body pt-0">
+            @include('error_card_list')
+            <div class="card-text">
 
     {{-- note入力画面 --}}
 
@@ -50,7 +56,6 @@
         @endauth
 
         {{-- 未ログイン時は下部にログインと会員登録のボタンを表示 --}}
-        {{-- ログインしていない時のノートの処理方法の検討 --}}
         @guest
         <div class="top__btn">
 
@@ -58,40 +63,26 @@
 
             {{-- noteの新規登録 --}}
             <p>
-              <input type="submit" class="btn new" name="post-note" value="新規作成"/>
+              <input type="submit" class="btn btn-primary" name="post-note" value="新規作成"/>
             </p>
 
             {{-- 画像登録 未ログインユーザーでの実装方法を要検討 --}}
             <p>
-              <input type="submit" class="btn image" name="post-img" value="画像登録"/>
+              <input type="submit" class="btn btn-info" name="post-img" value="画像登録"/>
             </p>
 
           </div>
 
-
-          {{-- 未ログインの時はログインと会員登録ボタンを表示する --}}
-          <div class="top__btn-login">
-
-              {{-- ログイン --}}
-              <p>
-                  <a href="{{route('login')}}">
-                    <button type="button" class="btn">ログイン</button>
-                </a>
-            </p>
-
-            {{-- 会員登録 --}}
-            <p>
-                <a href="{{route('register')}}">
-                    <button type="button" class="btn">新規会員登録</button>
-                </a>
-            </p>
-
-            </div>
         </div>
         @endguest
 
     </form>
 
     </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
