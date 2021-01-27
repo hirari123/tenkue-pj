@@ -55,7 +55,6 @@
         </div>
         @endauth
 
-        {{-- 未ログイン時は下部にログインと会員登録のボタンを表示 --}}
         @guest
         <div class="top__btn">
 

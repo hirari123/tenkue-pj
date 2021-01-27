@@ -7,11 +7,11 @@
 
     @guest
     <li class="nav-item">
-      <a class="nav-link" href="">ユーザー登録</a>
+      <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
+      <a class="nav-link" href="{{ route('login') }}">ログイン</a>
     </li>
     @endguest
 
@@ -19,7 +19,7 @@
     <li class="nav-item">
       <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>新規作成</a>
     </li>
-    @endauth
+
 
     <!-- Dropdown -->
     <li class="nav-item dropdown">
@@ -29,18 +29,25 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <button class="dropdown-item" type="button"
-                onclick="location.href=''">
+                onclick="location.href='/'">
           マイページ
         </button>
+
         <div class="dropdown-divider"></div>
+
         <button form="logout-button" class="dropdown-item" type="submit">
           ログアウト
         </button>
+        <form id="logout-button" method="POST" action="{{ route('logout') }}">
+        @csrf
+        </form>
+
       </div>
     </li>
     <form id="logout-button" method="POST" action="">
     </form>
     <!-- Dropdown -->
+    @endauth
 
   </ul>
 
