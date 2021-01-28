@@ -3,8 +3,8 @@
 @csrf
 <div class="md-form">
     {{-- タイトル入力 --}}
-  <label>タイトル</label>
-  <input type="text" class="form-control" name="note_title" required placeholder="ノートタイトル"
+  <label class="mb-2">タイトル</label>
+  <input type="text" class="form-control mt-2" name="note_title" required placeholder="ノートタイトル"
         value="{{$article->note_title ?? old('note_title') }}">
 </div>
 

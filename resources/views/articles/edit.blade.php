@@ -6,42 +6,34 @@
 
 @section('content')
 
-<div class="top">
-
     @include('nav')
 
-    {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
-    {{-- @include('error_card_list') --}}
+    <div class="container">
+
+    @include('error_card_list')
 
         <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}" enctype="multipart/form-data">
         @method('PATCH')
         @include('articles.form')
 
+        <div class="row">
         {{-- noteの更新 --}}
-            <p>
-              <input type="submit" class="btn new" name="post-note" value="更新"/>
-            </p>
-
-            {{-- 画像登録 --}}
-            <p>
-              <input type="file" class="btn image" name="image" value="画像登録"/>
-            </p>
-        </form>
-
-        {{-- 削除ボタン --}}
-        <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
-              @csrf
-              @method('DELETE')
-                <button type="submit" class="btn edit">削除</button>
-        </form>
+        <div class="col-12 col-md-6 text-center">
+            <button type="submit" class="btn btn-primary">更新</button>
+        </div>
+        {{-- 画像登録 --}}
+        <div class="col-12 col-md-6 text-center">
+            <button type="file" class="btn btn-info">画像登録</button>
+        </div>
 
         {{-- 一覧ページへの遷移ボタン --}}
-        <p>
+        <div class="col-12 text-center mt-2">
             <a href="{{route('articles.index')}}">
-                <button type="button" class="btn">一覧</button>
+                <button type="button" class="btn btn-outline-info">一覧ページへ</button>
             </a>
-        </p>
+        </div>
 
-</div>
+        </div>
 
+    </div>
 @endsection
