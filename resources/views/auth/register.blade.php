@@ -5,29 +5,87 @@
 @section('title', 'ユーザー登録')
 
 @section('content')
+<!-- Material form register -->
 <div class="container">
-  <div class="inner">
-    <header class="header">
-      <h1 class="apptitle">everynote</h1>
-    </header>
+<div class="row">
+    <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
+
+    <h5 class="card-header primary-color white-text text-center py-4">
+        <strong>ユーザー登録</strong>
+    </h5>
+
+    <div class="card mt-3">
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <div class="card-text">
+
+        <!-- Form -->
+        @csrf
+        <form class="text-center" style="color: #757575;" action="{{route('register')}}" method="POST"">
+
+            <div class="form-row">
+                <div class="col">
+                    <!-- name -->
+                    <div class="md-form">
+                        <input type="text" id="Name" class="form-control" value="{{ old('name')}}">
+                        <label for="Name">名前</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+                <input type="email" id="Email" class="form-control" value="{{ old('email') }}">
+                <label for="Email">メールアドレス</label>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                <input type="password" id="Password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <label for="Password">パスワード</label>
+                </small>
+            </div>
+
+            <!-- Password 確認用 -->
+            <div class="md-form">
+                <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <label for="materialRegisterFormPassword">パスワード(確認)</label>
+                <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    もう一度パスワードの入力をお願いします
+                </small>
+            </div>
+
+
+            <!-- 登録button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">新規ユーザー登録</button>
+
+            <!-- Social register -->
+            <p>googleで登録</p>
+            <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
+                <i class="fab fa-google mr-1"></i>登録
+            </a>
+
+        </form>
+        <!-- Form -->
+    </div>
+
+    <div class="mt-0">
+        <a href="{{ route('login') }}" class="card-text text-center">ログインはこちら</a>
+    </div>
+</div>
+
+
+    </div>
 
     @include('error_card_list')
 
-    <div class="form_wrapper">
-      <form action="{{route('register')}}" method="POST">
 
-        @csrf
+    </div>
+</div>
+</div>
+<!-- Material form register -->
 
-        <p class="inputlabel">名前</p>
-        <p class="input"><input type="text" id="name" class="user" name="name" placeholder="太郎" required value="{{old('name')}}"></p>
-        <p class="inputlabel">メールアドレス</p>
-        <p class="input"><input type="email" class="user" id=“email” name="email" placeholder="hoge@mail.com" required value="{{old('email')}}"></p>
-        <p class="inputlabel">パスワード</p>
-        <p class="input"><input type="password" class="user" id=“password” name="password" placeholder="******" required></p>
-        <p class="btn"><input type="submit"  class="btn" name="register" value="新規会員登録"></p>
-        <p class="btn"><input type="button" class="btn" name="google" value="googleアカウントで登録"></p>
-      </form>
-    </div><!--form_wrapper-->
-  </div><!--inner-->
-</div><!--container-->
+
 @endsection

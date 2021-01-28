@@ -1,17 +1,19 @@
 {{-- note記入フォーム。新規作成、編集の両方で使用する --}}
 
 @csrf
-<div class="top__text">
-
-    <p>
-        {{-- タイトル入力 --}}
-        <input type="text" name="note_title" required placeholder="ノートタイトル"
+<div class="md-form">
+    {{-- タイトル入力 --}}
+  <label class="mb-2">タイトル</label>
+  <input type="text" class="form-control mt-2" name="note_title" required placeholder="ノートタイトル"
         value="{{$article->note_title ?? old('note_title') }}">
-    </p>
+</div>
 
-        {{-- 内容入力 --}}
+<div class="form-group">
+  <label></label>
+  {{-- 内容入力 --}}
         <textarea name="content" required class="form-control" rows="16"
-        placeholder="ノート内容">{{$article->content ?? old('content') }}</textarea>
+        class="form-control" placeholder="ノート内容">{{$article->content ?? old('content') }}</textarea>
+</div>
 
         {{-- 画像表示エリア --}}
         @foreach ($images as $image)
