@@ -24,7 +24,7 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
-    // note一覧の表示 該当するuser_idのatricleのみ表示するように編集する
+    // note一覧の表示 該当するuser_idのnoteのみ表示するように編集する
 
     public function index()
     {
@@ -90,7 +90,7 @@ class ArticleController extends Controller
                 throw $exception;
             }
         }
-        // 画像保存はここまで
+        // 画像保存ここまで
 
         // 一覧ページへリダイレクト
         return redirect()->route('articles.index');
@@ -176,8 +176,12 @@ class ArticleController extends Controller
     }
 
     // トップページの表示
+    // ログイン状態であれば、listページを開く
     public function top()
     {
+        if (Auth::check()) {
+            return redirect()->route('articles.index');
+        }
         return view('articles.toppage');
     }
 }

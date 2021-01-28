@@ -6,45 +6,36 @@
 
 @section('content')
 
-<div class="top">
+@include('nav')
+<div class="container">
 
-    @include('nav')
 
-    {{-- エラー確認のための表示機能 解決したら破棄 --}}
-    @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
-    {{-- 入力内容に不備がある場合のエラーの表示方法について要検討 --}}
-    {{-- @include('error_card_list') --}}
+    @include('error_card_list')
 
     <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
 
     {{-- 新規作成専用のformを使用する --}}
     @include('articles.form-new')
 
-    {{-- noteの新規登録 --}}
-    <p>
-        <input type="submit" class="btn new" value="新規作成"/>
-    </p>
 
-    {{-- 画像登録 --}}
-    <p>
-        <input type="file" class="btn image" name="image" value="画像登録"/>
-    </p>
+    <div class="row">
+        {{-- noteの新規登録 --}}
+        <div class="col-12 col-md-6 text-center">
+            <button type="submit" class="btn btn-primary">新規作成</button>
+        </div>
+        {{-- 画像登録 --}}
+        <div class="col-12 col-md-6 text-center">
+            <button type="file" class="btn btn-info">画像登録</button>
+        </div>
 
-    {{-- 一覧ページへの遷移ボタン --}}
-        <p>
+        {{-- 一覧ページへの遷移ボタン --}}
+        <div class="col-12 text-center mt-2">
             <a href="{{route('articles.index')}}">
-                <button type="button" class="btn">一覧</button>
+                <button type="button" class="btn btn-outline-info">一覧ページへ</button>
             </a>
-        </p>
+        </div>
+
+    </div>
 
 
     </form>

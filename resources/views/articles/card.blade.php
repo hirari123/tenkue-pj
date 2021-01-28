@@ -27,7 +27,7 @@
 
             <p>
 
-              {{-- 削除ボタン モーダルの実装をどうするか 現状確認なしでワンボタン削除 --}}
+              {{-- 削除ボタン --}}
               <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
               @csrf
               @method('DELETE')

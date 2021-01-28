@@ -65,7 +65,7 @@
               <input type="submit" class="btn btn-primary" name="post-note" value="新規作成"/>
             </p>
 
-            {{-- 画像登録 未ログインユーザーでの実装方法を要検討 --}}
+            {{-- 画像登録 --}}
             <p>
               <input type="submit" class="btn btn-info" name="post-img" value="画像登録"/>
             </p>

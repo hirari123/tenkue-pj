@@ -32,7 +32,7 @@ Route::get('/', 'ArticleController@top')->name('articles.toppage');
 Route::resource('/', 'ArticleController')->except(['destroy', 'update', 'edit', 'show', 'index']);
 
 // 一覧ページ表示のルーティング
-Route::get('/list', 'ArticleController@index')->name('articles.index');
+Route::get('/list', 'ArticleController@index')->name('articles.index')->middleware('auth');
 
 // 各種機能の追加
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');

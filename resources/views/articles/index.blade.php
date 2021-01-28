@@ -62,12 +62,12 @@
         {{-- create.bladeへのリンクボタン --}}
         <p>
             <a href="{{route('articles.create')}}">
-                <button type="button" class="btn">新規作成</button>
+                <button type="button" class="btn btn-primary">新規作成</button>
             </a>
         </p>
 
         {{-- ログアウト処理 --}}
-        <button form="logout-button" type="submit" class="btn">ログアウト</button>
+        <button form="logout-button" type="submit" class="btn btn-light">ログアウト</button>
         <form id="logout-button" method="POST" action="{{ route('logout') }}">
         @csrf
         </form>

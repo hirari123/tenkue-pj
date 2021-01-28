@@ -17,7 +17,7 @@
 
     @auth
     <li class="nav-item">
-      <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>新規作成</a>
+      <a class="nav-link" href="{{route('articles.create')}}"><i class="fas fa-pen mr-1"></i>新規作成</a>
     </li>
 
 
@@ -29,7 +29,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <button class="dropdown-item" type="button"
-                onclick="location.href='/'">
+                onclick="location.href='/list'">
           マイページ
         </button>
 
