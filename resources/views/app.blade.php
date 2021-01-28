@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
+    <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=375,
@@ -14,14 +14,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>
-      @yield('title')
+    @yield('title')
     </title>
 
     {{-- public/assets/cssに配置しているCSSの読み込み --}}
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('assets/css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"> --}}
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -32,9 +32,9 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-  </head>
+    </head>
 
-  <body>
+    <body>
 
     @yield('content')
 
@@ -47,6 +47,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
 
-  </body>
+    </body>
 
 </html>
