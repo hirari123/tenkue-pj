@@ -22,14 +22,14 @@
         <div class="card-text">
 
         <!-- Form -->
-        @csrf
         <form class="text-center" style="color: #757575;" action="{{route('register')}}" method="POST"">
+            @csrf
 
             <div class="form-row">
                 <div class="col">
                     <!-- name -->
                     <div class="md-form">
-                        <input type="text" id="Name" class="form-control" value="{{ old('name')}}">
+                        <input type="text" id="Name" class="form-control" name="name" value="{{ old('name')}}">
                         <label for="Name">名前</label>
                     </div>
                 </div>
@@ -37,20 +37,20 @@
 
             <!-- E-mail -->
             <div class="md-form mt-0">
-                <input type="email" id="Email" class="form-control" value="{{ old('email') }}">
+                <input type="email" id="Email" class="form-control" name="email" value="{{ old('email') }}">
                 <label for="Email">メールアドレス</label>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-                <input type="password" id="Password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <input type="password" id="Password" name="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                 <label for="Password">パスワード</label>
                 </small>
             </div>
 
             <!-- Password 確認用 -->
             <div class="md-form">
-                <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <input type="password" id="materialRegisterFormPassword" name="password_confirmation" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                 <label for="materialRegisterFormPassword">パスワード(確認)</label>
                 <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     もう一度パスワードの入力をお願いします

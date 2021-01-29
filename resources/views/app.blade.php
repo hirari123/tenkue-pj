@@ -17,12 +17,6 @@
     @yield('title')
     </title>
 
-    {{-- public/assets/cssに配置しているCSSの読み込み --}}
-    {{-- <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"> --}}
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
